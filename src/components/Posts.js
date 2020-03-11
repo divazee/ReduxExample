@@ -8,6 +8,14 @@ class Posts extends Component {
     this.props.fetchPosts();
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+      if(nextProps.newPost){
+        // append newPost to the beginnning of posts array
+        // push adds to the top
+          this.props.posts.unshift(nextProps.newPost)
+      }
+  }
+
   render() {
     const post = this.props.posts.map(post => (
       <ul key={post.id}>
@@ -26,11 +34,13 @@ class Posts extends Component {
 
 Posts.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  newPost: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  posts: state.posts.items
+  posts: state.posts.items,
+  newPost: state.posts.item
 });
 
 export default connect(mapStateToProps, { fetchPosts })(Posts);
