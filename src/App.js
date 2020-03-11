@@ -1,12 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Provider } from 'react-redux'
+import store from './store'
+
+import Posts from './components/Posts'
+import Postform from './components/Postform'
+
+// const store = createStore(() => [], {}, applyMiddleware())
 
 function App() {
   return (
+    <Provider store={store}>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/* <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -17,9 +25,13 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
+        hello
+        <Postform />
+        <Posts />
       </header>
     </div>
+    </Provider>
   );
 }
 
